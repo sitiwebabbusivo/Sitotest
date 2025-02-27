@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preventivi Gommista</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: red; /* Sfondo rosso */
+            color: white;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input, button, select {
+            width: 100%;
+            padding: 12px;  /* Aumentato il padding per dare più spazio */
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;  /* Garantisce che il padding non allarghi l'elemento */
+        }
+        button {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 14px; /* Maggiore padding per i tasti */
+        }
+        .call-now {
+            background-color: #007bff; /* Blu del tasto "Chiama Adesso" */
+            color: white;
+            border: none;
+            padding: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .whatsapp-icon, .instagram-icon, .facebook-icon, .call-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            margin-top: 10px;
+        }
+        .whatsapp-icon {
+            background-color: #25D366;
+        }
+        .instagram-icon {
+            background-color: #C13584; /* Colore Instagram */
+        }
+        .facebook-icon {
+            background-color: #1877F2; /* Colore Facebook */
+        }
+        .call-icon {
+            background-color: #34b7f1; /* Colore del tasto per la chiamata */
+        }
+        .whatsapp-icon img, .instagram-icon img, .facebook-icon img, .call-icon img {
+            width: 40px;
+            height: 40px;
+        }
+        .logo {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        .location {
+            margin-top: 20px;
+        }
+        .location a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .or-text {
+            margin-top: 10px;
+            color: white;
+            font-size: 16px;
+        }
+        /* Posizione fissa dei tasti social */
+        .social-icons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://instagram.com/username/profile-pic.jpg" alt="Logo Gommista" class="logo">
+        <h2>Richiedi un Preventivo</h2>
+        <form id="preventivoForm">
+            <input type="text" id="nome" placeholder="Il tuo nome" required>
+            <input type="tel" id="telefono" placeholder="Numero di telefono" required>
+            <input type="text" id="modello" placeholder="Modello dell'auto" required>
+            <input type="text" id="misura" placeholder="Misura delle gomme (es. 205/55 R16)" required>
+            <select id="servizio">
+                <option value="Cambio gomme">Cambio gomme</option>
+                <option value="Equilibratura">Equilibratura</option>
+                <option value="Convergenza">Convergenza</option>
+                <option value="Riparazione pneumatico">Riparazione pneumatico</option>
+            </select>
+            <button type="button" onclick="inviaWhatsApp()">Richiedi su WhatsApp</button>
+            
+            <!-- Testo "oppure" -->
+            <div class="or-text">oppure</div>
+
+            <!-- Tasto per chiamare -->
+            <button class="call-now" onclick="window.location.href='tel:+393401952411'">Chiama Adesso</button>
+        </form>
+        <div class="location">
+            <h3>Dove Siamo</h3>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Via+Enrico+Fermi,+98040+Torregrotta+ME" target="_blank">Ottieni Indicazioni</a>
+        </div>
+    </div>
+    
+    <!-- Icone social fisse in basso a destra -->
+    <div class="social-icons">
+        <!-- Icona WhatsApp -->
+        <a href="https://wa.me/393491076332" class="whatsapp-icon" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        </a>
+        
+        <!-- Icona Instagram -->
+        <a href="https://www.instagram.com/catanzarogomme2023/" class="instagram-icon" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+        </a>
+        
+        <!-- Icona Facebook -->
+        <a href="https://www.facebook.com/share/18b47BLgUg/" class="facebook-icon" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+        </a>
+    </div>
+
+    <script>
+        function inviaWhatsApp() {
+            let nome = document.getElementById("nome").value;
+            let telefono = document.getElementById("telefono").value;
+            let modello = document.getElementById("modello").value;
+            let misura = document.getElementById("misura").value;
+            let servizio = document.getElementById("servizio").value;
+            
+            if (!nome || !telefono || !modello || !misura || !servizio) {
+                alert("Compila tutti i campi");
+                return;
+            }
+            
+            let messaggio = `Ciao, sono ${nome}. Vorrei un preventivo per il servizio: ${servizio}.
+Modello auto: ${modello}
+Misura gomme: ${misura}
+Il mio numero è ${telefono}.`;
+            let link = `https://wa.me/393491076332?text=${encodeURIComponent(messaggio)}`;
+            window.open(link, "_blank");
+        }
+    </script>
+</body>
+</html>
